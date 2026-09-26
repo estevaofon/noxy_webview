@@ -21,5 +21,7 @@ if [ "$OS" = linux ] && ! pkg-config --exists webkit2gtk-4.0 && pkg-config --exi
 fi
 mkdir -p dist
 CGO_ENABLED=1 GOARCH="$ARCH" go build -trimpath -ldflags=-s -o "dist/noxy-plugin-$NAME-$OS-$ARCH$ext" .
-(cd dist && sha256sum -- "noxy-plugin-$NAME-$OS-$ARCH$ext" > "checksums-$OS-$ARCH.txt")
+# sha256sum e do coreutils; o macOS traz shasum, com a mesma saida "hash  arquivo"
+if command -v sha256sum >/dev/null 2>&1; then sum="sha256sum"; else sum="shasum -a 256"; fi
+(cd dist && $sum -- "noxy-plugin-$NAME-$OS-$ARCH$ext" > "checksums-$OS-$ARCH.txt")
 echo "dist/noxy-plugin-$NAME-$OS-$ARCH$ext"
