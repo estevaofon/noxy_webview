@@ -1,0 +1,28 @@
+// noxy_webview.nx — wrapper tipado da extensao `webview`: uma janela nativa
+// (WebKitGTK no Linux, WebView2 no Windows, WKWebView no macOS) apontando
+// para uma URL. Os nativos webview_open, webview_wait, webview_close e
+// webview_set_title sao registrados pela VM a partir de noxy_ext.toml; o
+// binario em bin/ comeca na primeira chamada. Uma janela por processo.
+// Toda falha e um erro de runtime `extension 'webview' failed: <motivo>`,
+// capturavel com call_result.
+
+// open abre a janela com o titulo e o tamanho dados, carregando url.
+// Erros: janela ja aberta, janela ja fechada, tamanho nao positivo.
+func open(title: string, width: int, height: int, url: string) -> void
+    webview_open(title, width, height, url)
+end
+
+// wait bloqueia ate a janela fechar, pelo X ou por close.
+func wait() -> void
+    webview_wait()
+end
+
+// close pede o fechamento; idempotente depois de fechada.
+func close() -> void
+    webview_close()
+end
+
+// set_title muda o titulo da janela aberta.
+func set_title(title: string) -> void
+    webview_set_title(title)
+end

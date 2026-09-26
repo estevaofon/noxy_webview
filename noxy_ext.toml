@@ -1,0 +1,34 @@
+name = "webview"
+abi = 1
+kind = "process"
+min_noxy = "0.25.0"
+concurrency = "concurrent"      # wait bloqueia; close e set_title precisam passar
+capabilities = ["display"]
+
+[binaries]                      # release assets; noxy --get baixa o do seu OS/arch
+linux-amd64   = "noxy-plugin-webview-linux-amd64"
+windows-amd64 = "noxy-plugin-webview-windows-amd64.exe"
+darwin-amd64  = "noxy-plugin-webview-darwin-amd64"
+darwin-arm64  = "noxy-plugin-webview-darwin-arm64"
+
+[[export]]
+name = "webview_open"           # (title, width, height, url): abre a unica janela
+params = ["string", "int", "int", "string"]
+returns = "void"
+stateful = true
+
+[[export]]
+name = "webview_wait"           # bloqueia ate a janela fechar (X ou close)
+params = []
+returns = "void"
+timeout_ms = 0
+
+[[export]]
+name = "webview_close"          # pede o fechamento; no-op depois de fechada
+params = []
+returns = "void"
+
+[[export]]
+name = "webview_set_title"      # (title): muda o titulo da janela aberta
+params = ["string"]
+returns = "void"

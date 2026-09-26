@@ -1,0 +1,55 @@
+# Release da extensao noxy_webview. A biblioteca webview e cgo em todo OS,
+# entao cada plataforma compila nativamente; o ultimo job junta os
+# checksums em checksums.txt e publica tudo como assets do release da tag,
+# com os nomes listados em [binaries] de noxy_ext.toml.
+
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            arch: amd64
+          - os: ubuntu-latest
+            arch: amd64
+          - os: macos-latest
+            arch: arm64
+          - os: macos-latest
+            arch: amd64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+      - run: sh release/build.sh webview ${{ matrix.arch }}
+        shell: bash
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ matrix.os }}-${{ matrix.arch }}
+          path: dist/*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - run: cd dist && cat checksums-*.txt > checksums.txt && rm checksums-*.txt && ls -l
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
