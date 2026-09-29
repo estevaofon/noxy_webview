@@ -3,7 +3,7 @@
 // noxy_libs (ou deste checkout linkado la):
 //     noxy examples/smoke.nx
 use sys
-use github_com.estevaofon.noxy_webview.noxy_webview as webview
+use github_com.noxylang.noxy_webview.noxy_webview as webview
 
 webview.open("noxy_webview smoke", 480, 320, "data:text/html,<h1 style='font-family:sans-serif'>ok</h1>")
 sys.sleep(500)

@@ -11,10 +11,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/estevaofon/noxy/sdk/noxyplugin"
+	"github.com/noxylang/noxy/sdk/noxyplugin"
 	webview "github.com/webview/webview_go"
 
-	"github.com/estevaofon/noxy_webview/window"
+	"github.com/noxylang/noxy_webview/window"
 )
 
 // native adapta webview.WebView a window.Native: SetSize sem hint.
