@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/estevaofon/noxy/sdk/noxyplugin"
+	"github.com/noxylang/noxy/sdk/noxyplugin"
 	webview "github.com/webview/webview_go"
 
 	"github.com/noxylang/noxy_webview/window"

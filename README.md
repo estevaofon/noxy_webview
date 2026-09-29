@@ -1,9 +1,9 @@
 # noxy_webview
 
 Uma janela nativa para uma página local, como extensão por processo do
-[Noxy](https://github.com/estevaofon/noxy): WebKitGTK no Linux, WebView2 no
+[Noxy](https://github.com/noxylang/noxy): WebKitGTK no Linux, WebView2 no
 Windows, WKWebView no macOS, via [webview_go](https://github.com/webview/webview_go).
-Feita para o [Noxy Editor](https://github.com/estevaofon/Noxy-Editor), serve
+Feita para o [Noxy Editor](https://github.com/noxylang/Noxy-Editor), serve
 para qualquer programa Noxy que sirva uma página em `127.0.0.1` e queira uma
 janela sem barra de endereço.
 
