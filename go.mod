@@ -1,4 +1,4 @@
-module github.com/estevaofon/noxy_webview
+module github.com/noxylang/noxy_webview
 
 go 1.25.0
 

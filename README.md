@@ -9,7 +9,7 @@ janela sem barra de endereço.
 
 ## Instalação
 
-    noxy --get github.com/estevaofon/noxy_webview
+    noxy --get github.com/noxylang/noxy_webview
 
 `noxy --get` baixa o binário da sua plataforma para `bin/` e grava os hashes
 em `noxy.sum`. Requer Noxy 0.25.0 ou mais novo. Em runtime, o Linux precisa
@@ -19,7 +19,7 @@ WebView2 (incluído no Windows 11).
 ## API
 
 ```noxy
-use github_com.estevaofon.noxy_webview.noxy_webview as webview
+use github_com.noxylang.noxy_webview.noxy_webview as webview
 
 webview.open("Minha página", 1200, 800, "http://127.0.0.1:8080/")
 webview.set_title("Minha página — carregada")
@@ -61,7 +61,7 @@ com um diretório temporário onde `webkit2gtk-4.0.pc` e
 `PKG_CONFIG_PATH` só durante o build.
 
 Para usar um checkout num projeto sem release, linke o diretório em
-`<projeto>/noxy_libs/github_com/estevaofon/noxy_webview`; sem entrada em
+`<projeto>/noxy_libs/github_com/noxylang/noxy_webview`; sem entrada em
 `noxy.sum` a VM avisa uma vez e roda. Então `noxy examples/smoke.nx` (a partir
 do projeto) abre uma janela por meio segundo e imprime `ok`.
 
